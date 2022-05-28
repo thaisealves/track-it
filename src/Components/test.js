@@ -29,6 +29,7 @@ function App() {
                 background
                 backgroundPadding={6}
                 styles={buildStyles({
+                    
                     backgroundColor: "#3e98c7",
                     textColor: "#fff",
                     pathColor: "#fff",

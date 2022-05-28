@@ -1,11 +1,12 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { BrowserRouter, Routes, Route} from "react-router-dom"
 import { useState } from 'react'
-import Header from "../Components/Header"
-import LoginPage from "../Components/LoginPage"
-import SignUpPage from "../Components/SingUpPage"
-import Habits from "../Components/Habits"
-import TodayPage from "../Components/TodayPage"
-import HistoricPage from "../Components/HistoricPage"
+import Header from "./Header"
+import LoginPage from "./LoginPage"
+import SignUpPage from "./SingUpPage"
+import Habits from "./Habits"
+import TodayPage from "./TodayPage"
+import HistoricPage from "./HistoricPage"
+import Menu from "./Menu"
 import GlobalStyle from "./GlobalStyle"
 import UserContext from "./UserContext"
 
@@ -17,12 +18,13 @@ export default function App() {
     const [image, setImage] = useState("")
     const [token, setToken] = useState("")
 
-    
+
     return (
         <UserContext.Provider value={{ email, setEmail, password, setPassword, name, setName, image, setImage, token, setToken }}>
             <BrowserRouter>
                 <GlobalStyle />
                 <Header />
+                <Menu />
 
                 <Routes>
                     <Route path={"/"} element={<LoginPage />} />
@@ -31,7 +33,6 @@ export default function App() {
                     <Route path={"/hoje"} element={<TodayPage />} />
                     <Route path={"/historico"} element={<HistoricPage />} />
                 </Routes>
-
             </BrowserRouter>
         </UserContext.Provider>
     )

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react"
 import { ThreeDots } from "react-loader-spinner"
-import { Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
 import logo from "../image/logo.png"
 import UserContext from "./UserContext"
 
 export default function LoginPage() {
-    const { email, setEmail, password, setPassword, setToken } = useContext(UserContext);
+    const { email, setEmail, password, setPassword, setToken, setImage } = useContext(UserContext);
     const navigate = useNavigate();
     const [disable, setDisable] = useState(false)
     const [buttonCtt, setButtonCtt] = useState("Entrar")
@@ -23,7 +23,7 @@ export default function LoginPage() {
         }
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
 
-        promise.then((resp) => { setToken(resp.data.token); navigate("/hoje"); setDisable(false) })
+        promise.then((resp) => { setToken(resp.data.token); setImage(resp.data.image); navigate("/hoje"); setDisable(false) })
         promise.catch(err => { alert(`Error ${err.response.status}: Houve algum erro no seu login`); setDisable(false); setButtonCtt("Entrar"); })
 
     }
