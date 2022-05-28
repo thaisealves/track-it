@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import {useState} from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { useState } from 'react'
 import Header from "../Components/Header"
 import LoginPage from "../Components/LoginPage"
 import SignUpPage from "../Components/SingUpPage"
@@ -15,21 +15,25 @@ export default function App() {
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
+    const [token, setToken] = useState("")
+
+    
     return (
-        <UserContext.Provider value={{email, setEmail, password, setPassword, name, setName, image, setImage}}>
+        <UserContext.Provider value={{ email, setEmail, password, setPassword, name, setName, image, setImage, token, setToken }}>
             <BrowserRouter>
                 <GlobalStyle />
                 <Header />
+
                 <Routes>
                     <Route path={"/"} element={<LoginPage />} />
                     <Route path={"/cadastro"} element={<SignUpPage />} />
                     <Route path={"/habitos"} element={<Habits />} />
                     <Route path={"/hoje"} element={<TodayPage />} />
                     <Route path={"/historico"} element={<HistoricPage />} />
-
                 </Routes>
 
             </BrowserRouter>
         </UserContext.Provider>
     )
 }
+

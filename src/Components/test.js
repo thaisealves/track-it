@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import React from "react";
-import { BallTriangle, Circles } from "react-loader-spinner"
+import { BallTriangle, Circles, ThreeDots } from "react-loader-spinner"
 import ReactDOM from "react-dom"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
 import 'react-circular-progressbar/dist/styles.css';
@@ -9,7 +9,7 @@ let now = dayjs();
 console.log(now)
 
 const data = {
-    Component: BallTriangle,
+    Component: ThreeDots,
     props: {
         color: "#0ead69",
         height: 100,
