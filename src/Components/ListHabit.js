@@ -3,17 +3,22 @@ import styled from "styled-components"
 import { useContext, useState, useEffect } from "react";
 import UserContext from "./UserContext";
 import HabitsContext from "./HabitsContext";
-
+import { useNavigate } from "react-router-dom";
 export default function ListHabit() {
-    const { token } = useContext(UserContext);
     const { week, setNoHabit } = useContext(HabitsContext)
     const [list, setList] = useState([])
     const [reRender, setReRender] = useState(false)
+    let token = localStorage.getItem("token")
+    const navigate = useNavigate();
+    if (!token) {
+        navigate("/");
+    }
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
+
     useEffect(() => {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config)
         promise.then((response) => { setList(response.data); if (response.data.length !== 0) { setNoHabit("") } else { setNoHabit("Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!") } })

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
@@ -7,23 +7,23 @@ import logo from "../image/logo.png"
 import UserContext from "./UserContext"
 
 export default function LoginPage() {
-    const { email, setEmail, password, setPassword, setToken, setImage } = useContext(UserContext);
+    const { email, setEmail, password, setPassword, setImage } = useContext(UserContext);
     const navigate = useNavigate();
     const [disable, setDisable] = useState(false)
     const [buttonCtt, setButtonCtt] = useState("Entrar")
+
 
     function signInHandler(event) {
         event.preventDefault();
         setButtonCtt(<data.Component {...data.props} />)
         setDisable(true)
-
         let body = {
             email,
             password
         }
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
 
-        promise.then((resp) => { setToken(resp.data.token); setImage(resp.data.image); navigate("/hoje"); setDisable(false) })
+        promise.then((resp) => { setImage(resp.data.image); navigate("/hoje"); setDisable(false); localStorage.setItem("token", resp.data.token) })
         promise.catch(err => { alert(`Error ${err.response.status}: Houve algum erro no seu login`); setDisable(false); setButtonCtt("Entrar"); })
 
     }
@@ -33,8 +33,8 @@ export default function LoginPage() {
 
             <Forms onSubmit={signInHandler}>
                 <Disabled disabled={disable}>
-                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={disable}/>
-                    <input type="text" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={disable}/>
+                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={disable} />
+                    <input type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={disable} />
                     <button type="submit">{buttonCtt}</button>
                 </Disabled>
             </Forms>

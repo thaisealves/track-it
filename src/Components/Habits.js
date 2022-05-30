@@ -3,15 +3,20 @@ import { useContext } from "react";
 import HabitsContext from "./HabitsContext";
 import CreateBoard from "./CreateBoard";
 import ListHabit from "./ListHabit";
+import { useNavigate } from "react-router-dom";
 export default function Habits() {
     const { habitCtt, noHabit, setOpen, open, week, selectedDays, setSelectedDays, setNewHabit, setHabitCtt } = useContext(HabitsContext);
-
+    let token = localStorage.getItem("token")
+    const navigate = useNavigate();
+    if (!token){
+        navigate("/")
+    }
 
     return (
         <Container>
             <Top>
                 <h1>Meus Hábitos</h1>
-                <button onClick={() => setOpen(!open)}>+</button>
+                <button onClick={() => setOpen(true)}>+</button>
             </Top>
             <UserHabits>
                 {<CreateBoard />}

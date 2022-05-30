@@ -6,23 +6,22 @@ export default function HandleDays({ ind, value }) {
     const [colorLt, setColorLt] = useState('#DBDBDB')
     const [isSelected, setIsSelected] = useState(false);
     const { selectedDays, setSelectedDays } = useContext(HabitsContext)
-    
-    useEffect(() => {
-        if (isSelected) {
-            setColorBtn("#CFCFCF");
-            setColorLt("#FFFFFF");
-        }
-        else {
-            setColorBtn("#FFFFFF");
-            setColorLt("#DBDBDB");
 
-        }
-    }, [isSelected])
+    // useEffect(() => {
+    //     if (isSelected) {
+    //         setColorBtn("#CFCFCF");
+    //         setColorLt("#FFFFFF");
+    //     }
+    //     else {
+    //         setColorBtn("#FFFFFF");
+    //         setColorLt("#DBDBDB");
+
+    //     }
+    // }, [isSelected])
 
 
     function handleClick() {
-
-        setIsSelected(!isSelected)
+        setIsSelected(true)
         if (isSelected) {
             setSelectedDays(selectedDays.filter((item) => item !== ind))
         }
@@ -30,8 +29,9 @@ export default function HandleDays({ ind, value }) {
             setSelectedDays([...selectedDays, ind])
         }
     }
+    console.log(isSelected)
     return (
-        <DaySelected type="button" onClick={handleClick} colorBtn={colorBtn} colorLt={colorLt}>
+        <DaySelected type="button" onClick={handleClick} colorBtn={colorBtn} colorLt={colorLt} selected={isSelected}>
             {value}
         </DaySelected>
     )
@@ -40,9 +40,10 @@ export default function HandleDays({ ind, value }) {
 
 
 const DaySelected = styled.button`
+
     box-sizing: border-box;
-    color: ${props => props.colorLt};
-    background-color: ${props => props.colorBtn};
+    color: ${props => props.selected ? "#FFFFFF" : "#DBDBDB"};
+    background-color: ${props => props.selected ? "#CFCFCF" : "#FFFFFF"};
     font-size: 20px;
     width: 30px;
     height: 30px;

@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react"
 import UserContext from "./UserContext";
@@ -14,10 +15,15 @@ export default function TodayPage() {
     const [status, setStatus] = useState("Nenhum hábito concluído ainda")
     const [colorStatus, setColorStatus] = useState("#BABABA")
     const [listToday, setListToday] = useState([])
-    const { token, setPercentage, percentage } = useContext(UserContext)
+    const { setPercentage, percentage } = useContext(UserContext)
     const [control, setControl] = useState(false)
     const [divFor, setDivFor] = useState(1)
     let habitsDone = 0;
+    let token = localStorage.getItem("token")
+    const navigate = useNavigate();
+    if (!token) {
+        navigate("/")
+    }
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -61,7 +67,6 @@ export default function TodayPage() {
             }
             if (habitsDone === 0) setColorStatus("#BABABA")
         }, [])
-        console.log(percentage)
         currentSequence === 1 ? currentDays = "dia" : currentDays = "dias"
         highestSequence === 1 ? recordDays = "dia" : recordDays = "dias"
 
