@@ -21,9 +21,12 @@ export default function TodayPage() {
     let habitsDone = 0;
     let token = localStorage.getItem("token")
     const navigate = useNavigate();
+
+
     if (!token) {
         navigate("/")
     }
+
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -48,14 +51,18 @@ export default function TodayPage() {
         const [colorRecord, setColorRecord] = useState("#666666")
         let currentDays;
         let recordDays;
+
+
+
         useEffect(() => {
             if (done) {
                 setColorIcon("#8FC549")
                 habitsDone++
                 setPercentage((habitsDone / divFor) * 100)
-                setStatus(`${percentage}% dos hábitos concluídos`)
+                setStatus(`${percentage.toFixed(0)}% dos hábitos concluídos`)
                 setColorStatus("#8FC549")
                 setColorCurrent("#8FC549")
+
                 if (currentSequence === highestSequence) setColorRecord("#8FC549")
             }
             else {
@@ -66,6 +73,7 @@ export default function TodayPage() {
                 setColorRecord("#666666")
             }
             if (habitsDone === 0) setColorStatus("#BABABA")
+            
         }, [])
         currentSequence === 1 ? currentDays = "dia" : currentDays = "dias"
         highestSequence === 1 ? recordDays = "dia" : recordDays = "dias"
