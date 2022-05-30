@@ -35,10 +35,10 @@ export default function SignUpPage() {
 
             <Forms onSubmit={signUpHandler}>
                 <Disabled disabled={disable}>
-                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    <input type="text" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                    <input type="text" placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} required />
-                    <input type="text" placeholder="foto" value={image} onChange={(e) => setImage(e.target.value)} required />
+                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={disable}/>
+                    <input type="text" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={disable}/>
+                    <input type="text" placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} required disabled={disable}/>
+                    <input type="text" placeholder="foto" value={image} onChange={(e) => setImage(e.target.value)} required disabled={disable}/>
                     <button type="submit">{buttonCtt}</button>
                 </Disabled>
             </Forms>
@@ -75,12 +75,12 @@ const data = {
 
 const Container = styled.div`
 width: 100%;
-height: 500px;
-margin-top: 30%;
+height:100vh;
+background-color: white;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
+justify-content: space-around;
 `
 const Forms = styled.form`
 width: 70%;
@@ -101,7 +101,9 @@ input{
         color: #DBDBDB;
 
     }
-    
+    &[type="text"][disabled]{
+        background-color: #F2F2F2;
+    }
 }
 button{
     display: flex;

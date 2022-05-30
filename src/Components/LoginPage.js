@@ -33,8 +33,8 @@ export default function LoginPage() {
 
             <Forms onSubmit={signInHandler}>
                 <Disabled disabled={disable}>
-                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                    <input type="text" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required disabled={disable}/>
+                    <input type="text" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required disabled={disable}/>
                     <button type="submit">{buttonCtt}</button>
                 </Disabled>
             </Forms>
@@ -68,13 +68,13 @@ const data = {
     name: "Ball Triangle"
 }
 const Container = styled.div`
+height:100vh;
 width: 100%;
-height: 500px;
-margin-top: 30%;
+background-color: white;
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
+justify-content: space-around;
 `
 const Forms = styled.form`
 width: 70%;
@@ -94,6 +94,9 @@ input{
         font-family: 'Lexend Deca', sans-serif; 
         color: #DBDBDB;
 
+    }  
+    &[type="text"][disabled]{
+        background-color: #F2F2F2;
     }
 }
 button{
