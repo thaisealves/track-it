@@ -1,13 +1,11 @@
 import axios from "axios";
 import styled from "styled-components"
 import { useContext, useState, useEffect } from "react";
-import UserContext from "./UserContext";
 import HabitsContext from "./HabitsContext";
 import { useNavigate } from "react-router-dom";
 export default function ListHabit() {
-    const { week, setNoHabit } = useContext(HabitsContext)
+    const { week, setNoHabit, reRender, setReRender} = useContext(HabitsContext)
     const [list, setList] = useState([])
-    const [reRender, setReRender] = useState(false)
     let token = localStorage.getItem("token")
     const navigate = useNavigate();
     if (!token) {

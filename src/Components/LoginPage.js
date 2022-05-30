@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
@@ -7,7 +7,7 @@ import logo from "../image/logo.png"
 import UserContext from "./UserContext"
 
 export default function LoginPage() {
-    const { email, setEmail, password, setPassword, setImage } = useContext(UserContext);
+    const { email, setEmail, password, setPassword } = useContext(UserContext);
     const navigate = useNavigate();
     const [disable, setDisable] = useState(false)
     const [buttonCtt, setButtonCtt] = useState("Entrar")
@@ -23,7 +23,7 @@ export default function LoginPage() {
         }
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
 
-        promise.then((resp) => { setImage(resp.data.image); navigate("/hoje"); setDisable(false); localStorage.setItem("token", resp.data.token) })
+        promise.then((resp) => {  navigate("/hoje"); setDisable(false); localStorage.setItem("token", resp.data.token); localStorage.setItem("image", resp.data.image) })
         promise.catch(err => { alert(`Error ${err.response.status}: Houve algum erro no seu login`); setDisable(false); setButtonCtt("Entrar"); })
 
     }
@@ -52,7 +52,7 @@ function Disabled({ disabled, children }) {
         );
     }
 
-    return <React.Fragment>{children}</React.Fragment>;
+    return <>{children}</>;
 }
 
 
@@ -65,7 +65,7 @@ const data = {
         height: 50,
         width: 50
     },
-    name: "Ball Triangle"
+    name: "Three Dots"
 }
 const Container = styled.div`
 height:100vh;

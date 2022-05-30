@@ -16,19 +16,19 @@ export default function App() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
-    const [image, setImage] = useState("")
     const [habitCtt, setHabitCtt] = useState("")
     const [noHabit, setNoHabit] = useState("Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!")
     const [newHabit, setNewHabit] = useState("")
     const [selectedDays, setSelectedDays] = useState([])
     const [open, setOpen] = useState(false)
     const week = ["D", "S", "T", "Q", "Q", "S", "S"]
+    const [reRender, setReRender] = useState(false)
     const [percentage, setPercentage] = useState(0)
-    
+
 
     return (
-        <UserContext.Provider value={{ email, setEmail, password, setPassword, name, setName, image, setImage, percentage, setPercentage }}>
-            <HabitsContext.Provider value={{ habitCtt, setHabitCtt, noHabit, setNoHabit, newHabit, setNewHabit, selectedDays, setSelectedDays, week, open, setOpen }}>
+        <UserContext.Provider value={{ email, setEmail, password, setPassword, name, setName, percentage, setPercentage }}>
+            <HabitsContext.Provider value={{ habitCtt, setHabitCtt, noHabit, setNoHabit, newHabit, setNewHabit, selectedDays, setSelectedDays, week, open, setOpen, reRender, setReRender }}>
                 <BrowserRouter>
                     <GlobalStyle />
                     <Header />

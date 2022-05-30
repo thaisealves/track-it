@@ -2,36 +2,21 @@ import styled from 'styled-components';
 import HabitsContext from './HabitsContext';
 import { useEffect, useState, useContext } from 'react';
 export default function HandleDays({ ind, value }) {
-    const [colorBtn, setColorBtn] = useState("#FFFFFF");
-    const [colorLt, setColorLt] = useState('#DBDBDB')
     const [isSelected, setIsSelected] = useState(false);
     const { selectedDays, setSelectedDays } = useContext(HabitsContext)
-
-    // useEffect(() => {
-    //     if (isSelected) {
-    //         setColorBtn("#CFCFCF");
-    //         setColorLt("#FFFFFF");
-    //     }
-    //     else {
-    //         setColorBtn("#FFFFFF");
-    //         setColorLt("#DBDBDB");
-
-    //     }
-    // }, [isSelected])
-
-
+    useEffect(()=> {if (selectedDays.includes(ind)) setIsSelected(true)}, [])
     function handleClick() {
-        setIsSelected(true)
+        setIsSelected(!isSelected)
         if (isSelected) {
             setSelectedDays(selectedDays.filter((item) => item !== ind))
         }
         else {
             setSelectedDays([...selectedDays, ind])
         }
+        console.log(isSelected)
     }
-    console.log(isSelected)
     return (
-        <DaySelected type="button" onClick={handleClick} colorBtn={colorBtn} colorLt={colorLt} selected={isSelected}>
+        <DaySelected type="button" onClick={handleClick} selected={isSelected}>
             {value}
         </DaySelected>
     )

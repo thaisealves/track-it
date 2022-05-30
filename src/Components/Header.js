@@ -1,9 +1,7 @@
 import { useLocation, Link } from 'react-router-dom'
-import { useContext } from 'react'
-import UserContext from './UserContext';
 import styled from 'styled-components'
 export default function Header() {
-    const { image } = useContext(UserContext);
+    let image = localStorage.getItem("image")
     const location = useLocation();
 
     if (location.pathname === "/" || location.pathname === "/cadastro") {

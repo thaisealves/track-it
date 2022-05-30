@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import  { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { ThreeDots } from "react-loader-spinner"
 import styled from "styled-components"
@@ -8,8 +8,9 @@ import UserContext from "./UserContext"
 
 
 export default function SignUpPage() {
-    const { email, setEmail, password, setPassword, name, setName, image, setImage } = useContext(UserContext);
+    const { email, setEmail, password, setPassword, name, setName} = useContext(UserContext);
     const [disable, setDisable] = useState(false)
+    const [image, setImage] = useState("")
     const [buttonCtt, setButtonCtt] = useState("Cadastrar")
     const navigate = useNavigate()
     function signUpHandler(event) {
@@ -57,7 +58,7 @@ function Disabled({ disabled, children }) {
         );
     }
 
-    return <React.Fragment>{children}</React.Fragment>;
+    return <>{children}</>;
 }
 
 
@@ -70,7 +71,7 @@ const data = {
         height: 50,
         width: 50
     },
-    name: "Ball Triangle"
+    name: "Three Dots"
 }
 
 const Container = styled.div`
