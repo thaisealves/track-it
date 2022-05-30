@@ -2,15 +2,16 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { CircularProgressbar } from "react-circular-progressbar"
-
+import { useContext } from 'react'
+import UserContext from './UserContext'
 export default function Menu() {
     const location = useLocation();
+    const { percentage } = useContext(UserContext)
 
     if (location.pathname === "/" || location.pathname === "/cadastro") {
 
         return (null)
     }
-    const percentage = 60
     return (
         <Container>
             <Linked to={"/habitos"}>Hábitos</Linked>
@@ -55,6 +56,7 @@ left: 0;
 height: 70px;
 width: 100%;
 background-color: #FFFFFF;
+z-index: 1;
 
 div{
     

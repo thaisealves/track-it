@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { useContext } from 'react'
 import UserContext from './UserContext';
 import styled from 'styled-components'
@@ -13,7 +13,7 @@ export default function Header() {
     return (
         <Container>
             <h1>
-                TrackIt
+                <Link to={"/"}>TrackIt</Link>
             </h1>
             <img src={image} />
         </Container>)
@@ -24,6 +24,7 @@ box-sizing: border-box;
 display: flex;
 align-items: center;
 justify-content: space-between;
+z-index: 1;
 
 width: 100%;
 height: 70px;
@@ -38,11 +39,15 @@ box-shadow: 0 4px 4px rgba(0, 0, 0, 0.267);
 h1{
     font-family: 'Playball', cursive;
     font-size: 39px;
-    color: #FFFFFF;
 }
 img{
     width: 51px;
     height: 51px;
     border-radius: 50%;
+}
+a{
+    text-decoration: none;
+    color: #FFFFFF;
+
 }
 `

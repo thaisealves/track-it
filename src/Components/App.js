@@ -24,10 +24,10 @@ export default function App() {
     const [selectedDays, setSelectedDays] = useState([])
     const [open, setOpen] = useState(false)
     const week = ["D", "S", "T", "Q", "Q", "S", "S"]
-
+    const [percentage, setPercentage] = useState(0)
 
     return (
-        <UserContext.Provider value={{ email, setEmail, password, setPassword, name, setName, image, setImage, token, setToken }}>
+        <UserContext.Provider value={{ email, setEmail, password, setPassword, name, setName, image, setImage, token, setToken, percentage, setPercentage }}>
             <HabitsContext.Provider value={{ habitCtt, setHabitCtt, noHabit, setNoHabit, newHabit, setNewHabit, selectedDays, setSelectedDays, week, open, setOpen }}>
                 <BrowserRouter>
                     <GlobalStyle />
